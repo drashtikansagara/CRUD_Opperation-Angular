@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="main">
+  <header>
+    <h1>User Registration</h1>
+    <br />
+  </header>
+<form action="" [formGroup]="userForm">
+    <table class="table">
+        <thead>
+          <tr>
+            <th class="col-sm-2">Name</th>
+            <th class="col-sm-3">Email ID</th>
+            <th class="col-sm-2">Mob No.</th>
+            <th class="col-sm-2">Password</th>
+            <th class="col-sm-3">Confirm Password</th>
+            <th class="col-sm-1">Action</th>
+            <th class="col-sm-1"></th>
+          </tr>
+        </thead>
+        <tbody formArrayName="users">
+            <tr *ngFor="let user of users.controls; let i=index" [formGroupName]="i">
+                <td><input type="text" class="form-control" formControlName="Name" id="exampleFormControlInput1" placeholder="Name"></td>
+            <td><input type="email" class="form-control" formControlName="Email"  id="exampleFormControlInput1" placeholder="name@example.com"></td>
+            <td><input type="text" class="form-control" formControlName="mobileNumber" id="exampleFormControlInput1" placeholder="9999999999"></td>
+            <td><input type="password" id="inputPassword5" formControlName="password" class="form-control" aria-labelledby="passwordHelpBlock">
+            </td>
+            <td><input type="password" id="inputPassword5" formControlName="cpassword" class="form-control" aria-labelledby="passwordHelpBlock">
+            </td>
+            <td><button class="btn btn-danger" (click)="removeUser(i)" [disabled]="userForm.invalid"><i class="fa fa-trash"></i></button></td>
+            <td><button class="btn btn-success" (click)="addUser()" [disabled]="userForm.invalid"><i class="fa fa-plus"></i></button></td>
+            </tr>
+
+          <!-- <tr [formGroup]="userForm">
+            
+          </tr> -->
+          
+        </tbody>
+      </table>
+</form>
+<!-- {{userForm.value | json}} -->
+<button class=" btn btn-success m-3" (click)="onSubmit()" [disabled]="userForm.invalid">Submit</button>
+</div>

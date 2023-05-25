@@ -1,0 +1,26 @@
+<div class="main">
+    <div class="container">
+        <form [formGroup]="editForm">
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" formControlName="Name" class="form-control" aria-describedby="emailHelp" placeholder="Enter Name" >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" formControlName="Email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" >
+
+
+          <div class="form-group">
+            <label for="exampleInputPassword1">Mobile Number</label>
+            <input type="number" formControlName="mobileNumber"  class="form-control" placeholder="Enter Mobile Number">
+          </div>  
+          
+
+
+          <button type="submit"  class="btn btn-success" (click)="onSubmit()" [disabled]="editForm.invalid">Submit</button>
+          <button type="button" class="btn btn-primary m-3" [disabled]="editForm.invalid">Back</button>
+          </div>
+        </form>
+        <!-- {{editForm.value | json}} -->
+      </div>
+</div>
