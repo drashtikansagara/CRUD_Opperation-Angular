@@ -19,12 +19,55 @@
         </thead>
         <tbody formArrayName="users">
             <tr *ngFor="let user of users.controls; let i=index" [formGroupName]="i">
-                <td><input type="text" class="form-control" formControlName="Name" id="exampleFormControlInput1" placeholder="Name"></td>
-            <td><input type="email" class="form-control" formControlName="Email"  id="exampleFormControlInput1" placeholder="name@example.com"></td>
-            <td><input type="text" class="form-control" formControlName="mobileNumber" id="exampleFormControlInput1" placeholder="9999999999"></td>
-            <td><input type="password" id="inputPassword5" formControlName="password" class="form-control" aria-labelledby="passwordHelpBlock">
+            <!-- <td><input type="text" class="form-control" formControlName="Name" id="exampleFormControlInput1" placeholder="Name"></td> -->
+            <td>
+              <input type="text" class="form-control" formControlName="Name" id="exampleFormControlInput1"
+                placeholder="Name">
+              <div *ngIf="userForm.get('users.' + i + '.Name')?.invalid && userForm.get('users.' + i + '.Name')?.touched"
+                class="error-message">
+                <div *ngIf="userForm.get('users.' + i + '.Name')?.errors?.['required']">Name is required.</div>
+              </div>
             </td>
-            <td><input type="password" id="inputPassword5" formControlName="cpassword" class="form-control" aria-labelledby="passwordHelpBlock">
+            <!-- <td><input type="email" class="form-control" formControlName="Email"  id="exampleFormControlInput1" placeholder="name@example.com"></td> -->
+            <td>
+              <input type="text" class="form-control" formControlName="Email" id="exampleFormControlInput1"
+                placeholder="name@example.com">
+              <div *ngIf="userForm.get('users.' + i + '.Email')?.invalid && userForm.get('users.' + i + '.Email')?.touched"
+                class="error-message">
+                <div *ngIf="userForm.get('users.' + i + '.Email')?.errors?.['required']">Email is required.</div>
+                <div *ngIf="userForm.get('users.' + i + '.Email')?.errors?.['pattern']"> Invalid email.</div>
+              </div>
+            </td>
+            <!-- <td><input type="text" class="form-control" formControlName="mobileNumber" id="exampleFormControlInput1" placeholder="9999999999"></td> -->
+            <td>
+              <input type="text" class="form-control" formControlName="mobileNumber" id="exampleFormControlInput1"
+                placeholder="9999999999">
+              <div *ngIf="userForm.get('users.' + i + '.mobileNumber')?.invalid && userForm.get('users.' + i + '.mobileNumber')?.touched"
+                class="error-message">
+                <div *ngIf="userForm.get('users.' + i + '.mobileNumber')?.errors?.['required']">Mobile No. is required.</div>
+                <div *ngIf="userForm.get('users.' + i + '.mobileNumber')?.errors?.['pattern']"> Invalid Mobile No.</div>
+              </div>
+            </td>
+            <!-- <td><input type="password" id="inputPassword5" formControlName="password" class="form-control" aria-labelledby="passwordHelpBlock">
+            </td> -->
+            <td>
+              <input type="password" class="form-control" formControlName="password" id="inputPassword5"
+              aria-labelledby="passwordHelpBlock">
+              <div *ngIf="userForm.get('users.' + i + '.password')?.invalid && userForm.get('users.' + i + '.password')?.touched"
+                class="error-message">
+                <div *ngIf="userForm.get('users.' + i + '.password')?.errors?.['required']">Password is required.</div>
+              </div>
+            </td>
+            <!-- <td><input type="password" id="inputPassword5" formControlName="cpassword" class="form-control" aria-labelledby="passwordHelpBlock">
+            </td> -->
+            <td>
+              <input type="password" class="form-control" formControlName="cpassword" id="inputPassword5"
+              aria-labelledby="passwordHelpBlock">
+              <div *ngIf="userForm.get('users.' + i + '.cpassword')?.invalid && userForm.get('users.' + i + '.cpassword')?.touched"
+                class="error-message">
+                <div *ngIf="userForm.get('users.' + i + '.cpassword')?.errors?.['required']">Password is required.</div>
+                <div *ngIf="userForm.get('users.' + i + '.cpassword')?.errors?.['pattern']"> Invalid Mobile No.</div>
+              </div>
             </td>
             <td><button class="btn btn-danger" (click)="removeUser(i)" [disabled]="userForm.invalid"><i class="fa fa-trash"></i></button></td>
             <td><button class="btn btn-success" (click)="addUser()" [disabled]="userForm.invalid"><i class="fa fa-plus"></i></button></td>
